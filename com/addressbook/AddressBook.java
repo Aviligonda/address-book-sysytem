@@ -36,9 +36,52 @@ public class AddressBook {
         return book;
     }
 
+    private static Book editContact(Book book) {
+        System.out.println("Edit first name");
+        book.setFirstName(scanner.nextLine());
+        return book;
+    }
+
+    private static int findContactByName(String name) {
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] != null) {
+                String String;
+                if (books[i].getFirstName().equals(name) ||
+                        books[i].getLastName().equals(name)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program ");
-        AddressBook.createContact();
-        System.out.println(Arrays.toString(books));
+        boolean isExit = false;
+        while (!isExit) {
+            System.out.println("Please select options\n1. add contact\n2. edit contact");
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    createContact();
+                    System.out.println(Arrays.toString(books));
+                    break;
+                case 2:
+                    System.out.println("Enter name to edit");
+                    String name = scanner.nextLine();
+                    int booksIndex = findContactByName(name);
+                    System.out.println(booksIndex);
+                    if (booksIndex == -1) {
+                        System.out.println("Contact not found with name: " + name);
+                    } else {
+                        Book contact = editContact(books[booksIndex]);
+                        books[booksIndex] = contact;
+                    }
+                    System.out.println(Arrays.toString(books));
+                    break;
+                default:
+                    System.out.println("Please select valid input");
+            }
+        }
     }
 }
