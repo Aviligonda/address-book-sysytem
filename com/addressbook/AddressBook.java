@@ -59,7 +59,7 @@ public class AddressBook {
         System.out.println("Welcome to Address Book Program ");
         boolean isExit = false;
         while (!isExit) {
-            System.out.println("Please select options\n1. add contact\n2. edit contact");
+            System.out.println("Please select options\n1. add contact\n2. edit contact \n 3.Delete contact");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -76,6 +76,17 @@ public class AddressBook {
                     } else {
                         Book contact = editContact(books[booksIndex]);
                         books[booksIndex] = contact;
+                    }
+                    System.out.println(Arrays.toString(books));
+                    break;
+                case 3:
+                    System.out.println("Enter name to delete");
+                    name = scanner.nextLine();
+                    int contactIndexForDelete = findContactByName(name);
+                    if (contactIndexForDelete == -1) {
+                        System.out.println("Contact not found with name: " + name);
+                    } else {
+                        books[contactIndexForDelete] = null;
                     }
                     System.out.println(Arrays.toString(books));
                     break;
