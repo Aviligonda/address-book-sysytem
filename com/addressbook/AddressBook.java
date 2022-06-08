@@ -1,5 +1,6 @@
 package com.addressbook;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -24,13 +25,20 @@ public class AddressBook {
         book.setPhoneNum(Integer.parseInt(scanner.nextLine()));
         System.out.println("Enter zip");
         book.setZip(Integer.parseInt(scanner.nextLine()));
-
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] == null) {
+                books[i] = book;
+                System.out.println("Contact added successfully");
+                return book;
+            }
+        }
+        System.out.println("No space for new contact");
         return book;
     }
-
 
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program ");
         AddressBook.createContact();
+        System.out.println(Arrays.toString(books));
     }
 }
