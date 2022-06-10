@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AddressBook {
     private static Scanner scanner = new Scanner(System.in);
-    private static Book[] books = new Book[2];
+    private static Book[] books = new Book[10];
 
     private static Book createContact() {
         Book book = new Book();
@@ -39,6 +39,20 @@ public class AddressBook {
     private static Book editContact(Book book) {
         System.out.println("Edit first name");
         book.setFirstName(scanner.nextLine());
+        System.out.println("Enter last name");
+        book.setLastName(scanner.nextLine());
+        System.out.println("Enter address");
+        book.setAddress(scanner.nextLine());
+        System.out.println("Enter city");
+        book.setCity(scanner.nextLine());
+        System.out.println("Enter state");
+        book.setState(scanner.nextLine());
+        System.out.println("Enter Email");
+        book.setEmail(scanner.nextLine());
+        System.out.println("Enter phone num");
+        book.setPhoneNum(Integer.parseInt(scanner.nextLine()));
+        System.out.println("Enter zip");
+        book.setZip(Integer.parseInt(scanner.nextLine()));
         return book;
     }
 
@@ -74,19 +88,19 @@ public class AddressBook {
                     if (booksIndex == -1) {
                         System.out.println("Contact not found with name: " + name);
                     } else {
-                        Book contact = editContact(books[booksIndex]);
-                        books[booksIndex] = contact;
+                        Book book = editContact(books[booksIndex]);
+                        books[booksIndex] = book;
                     }
                     System.out.println(Arrays.toString(books));
                     break;
                 case 3:
                     System.out.println("Enter name to delete");
                     name = scanner.nextLine();
-                    int contactIndexForDelete = findContactByName(name);
-                    if (contactIndexForDelete == -1) {
+                    int bookIndexForDelete = findContactByName(name);
+                    if (bookIndexForDelete == -1) {
                         System.out.println("Contact not found with name: " + name);
                     } else {
-                        books[contactIndexForDelete] = null;
+                        books[bookIndexForDelete] = null;
                     }
                     System.out.println(Arrays.toString(books));
                     break;
